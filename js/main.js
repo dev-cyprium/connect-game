@@ -37,9 +37,10 @@ Game.prototype = (function() {
 			active_scene.update();
 		}
 		
-		active_scene.render(gl);
 		gl.clearColor(0.0, 0.0, 0.0, 1.0);
 		gl.clear(gl.COLOR_BUFFER_BIT);
+		active_scene.render(gl);
+		
 		
 		leftover = timeSinceLastDoLogic - (catchUpFrameCount * idealTimePerFrame);
 		timeAtLastFrame = timeAtThisFrame;
