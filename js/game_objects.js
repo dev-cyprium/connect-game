@@ -35,7 +35,7 @@ var BlankTile = function(x, y, scene) {
 	this.width  = BlankTile.SIZE;
 	this.height = BlankTile.SIZE;
 	this.color  = '#555555';
-	this.rect   = Phaser.Rectangle(this.x, this.y, this.width, this.height);
+	this.rect   = new Phaser.Rectangle(this.x, this.y, this.width, this.height);
 	this.active = true
 	this.hoverColor  = '#aaaaaa';
 	this.normalColor = '#000000';
@@ -47,13 +47,12 @@ BlankTile.prototype.render = function(game) {
 	} else {
 		this.normalColor = '#000000';
 	}
-	game.debug.geom(Phaser.Rectangle(20, 20, 100, 100), '#0fffff');
-	/*
-	game.debug.geom(this.rect, this.normalColor, Phaser.Rectangle(
+	game.debug.geom(this.rect, '#0fffff');
+	game.debug.geom( new Phaser.Rectangle(
 		this.x + 2,
 		this.y + 2,
 		this.width - 4,
 		this.height - 4
-	));*/
+	), this.normalColor);
 }
 BlankTile.SIZE = 50;
