@@ -21,8 +21,8 @@ PlayScene.prototype.update = function() {
 		this.gameObjects[i].update()
 	}
 }
-PlayScene.prototype.render = function(graphics) {
+PlayScene.prototype.render = function(game) {
 	for(var i=0; i < this.gameObjects.length; i++) {
-		this.gameObjects[i].render(graphics);
+		this.gameObjects[i].render(game);
 	}
 }

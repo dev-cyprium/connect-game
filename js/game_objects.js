@@ -1,9 +1,11 @@
-var Grid = function() {}
+var Grid = function() {
+	this.rect = new Phaser.Rectangle(10, 10, 100, 100);
+}
 Grid.prototype.update = function() {
 	
 }
-Grid.prototype.render = function(graphics) {
-	
+Grid.prototype.render = function(game) {
+	game.debug.geom(this.rect, '#ff05ff');
 }
 
 var BlankTile = function(x, y, scene) {
