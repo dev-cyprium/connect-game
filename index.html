@@ -2,9 +2,38 @@
 <html>
 <head>
 	<title>Connect</title>
-</head>
-<body>
 	
+	<!-- Stylesheet files -->
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	
+	<!-- JavaScript files -->
+	<script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
 	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+</head>
+<body onload="init();">
+	<div id='game-container'>
+		<canvas id='gameCanvas' width='800' height='600'></canvas>
+	</div>
+	
+	<script>
+		function init() {
+			var stage = new createjs.Stage('gameCanvas');
+			var circle = new createjs.Shape();
+			circle.graphics.beginFill('DeepSkyBlue').drawCircle(0, 0, 50);
+			circle.x = 100;
+			circle.y = 100;
+			stage.addChild(circle);
+			
+			createjs.Tween.get(circle, {loop: true})
+				.to({x: 400}, 1000, createjs.Ease.getPowInOut(4))
+				.to({alpha: 0, y: 175}, 500, createjs.Ease.getPowInOut(2))
+				.to({alpha: 0, y: 225}, 100)
+				.to({alpha: 1, y: 200}, 500, createjs.Ease.getPowInOut(2))
+				.to({x: 100}, 800, createjs.Ease.getPowInOut(2));
+				
+			createjs.Ticker.setFPS(60);
+			createjs.Ticker.addEventListener("tick", stage);
+		}
+	</script>
 </body>
 </html>
