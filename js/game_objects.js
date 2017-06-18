@@ -1,10 +1,30 @@
-var Grid = function() {
+var Grid = function(x, y, size, scene) {
+	this.x = x;
+	this.y = y;
+	this.scene = scene;
+	
+	this.placers = [];
+	this.tiles   = [];
+	this.size    = size;
+	for(var i=0; i < size; i++) {
+		this.tiles[i] = [];
+	}
+	
+	for(var x=0; x < size; x++) {
+		for(var y=0; y < size; y++) {
+			this.tiles[x][y] = new BlankTile(this.x + x * BlankTile.SIZE, this.y + y * BlankTile.SIZE, scene);
+		}
+	}
 }
 Grid.prototype.update = function() {
 	
 }
 Grid.prototype.render = function(game) {
-	game.debug.geom(this.rect, '#ff05ff');
+	for(var i=0; i < this.size; i++) {
+		for(var j=0; j < this.size; j++ ) {
+			this.tiles[i][j].render(game);
+		}
+	}
 }
 
 var BlankTile = function(x, y, scene) {
@@ -21,18 +41,19 @@ var BlankTile = function(x, y, scene) {
 	this.normalColor = '#000000';
 	this.ocupied = false; 
 }
-BlankTile.render = function(game) {
+BlankTile.prototype.render = function(game) {
 	if(this.active) {
 		this.normalColor = this.hoverColor;
 	} else {
 		this.normalColor = '#000000';
 	}
-	game.debug.geom(this.color, this.rect)
+	game.debug.geom(Phaser.Rectangle(20, 20, 100, 100), '#0fffff');
+	/*
 	game.debug.geom(this.rect, this.normalColor, Phaser.Rectangle(
 		this.x + 2,
 		this.y + 2,
 		this.width - 4,
 		this.height - 4
-	));
+	));*/
 }
 BlankTile.SIZE = 50;
