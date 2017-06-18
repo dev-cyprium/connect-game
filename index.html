@@ -5,13 +5,11 @@
 	
 	<!-- Stylesheet files -->
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-
-</head>
-<body onload='init();'>
-	<div id="game-container">
-		<canvas id='game-canvas' width='800' height='600'>
-	</div>
 	
+	<!-- LIB JS -->
+	<script src='/lib/phaser.min.js'></script>
+</head>
+<body onload='init();'>	
 	<!-- Game JS files -->
 	<script src='/js/scene.js'></script>
 	<script src='/js/game_objects.js'></script>
@@ -19,8 +17,7 @@
 	<script>
 		function init() {
 			var game = new Game();
-			game.init(document.getElementById('game-canvas'));
-			game.run();
+			game.init();
 		}
 	</script>
 </body>
