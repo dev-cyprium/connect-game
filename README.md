@@ -5,4 +5,4 @@ It features a puzzle game where the point is to fill the grid with elements.
 
 It uses:
  - Node as a static server for testing
- - JavaScript for the code implementation using the javascript library CreateJS
+ - JavaScript for the code implementation using the javascript WebGL
