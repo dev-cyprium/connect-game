@@ -10,10 +10,19 @@ SceneManager.prototype.activeScene = function() {
 
 
 
-var PlayScene = function() {}
-PlayScene.prototype.update = function() {
+var PlayScene = function() {
+	this.gameObjects = [];
+	this.grid = new Grid(400 - 125, 300 - 125, 5, this);
+	this.gameObjects.push(this.grid);
 	
 }
-PlayScene.prototype.render = function() {
-	
+PlayScene.prototype.update = function() {
+	for(var i=0; i < this.gameObjects.length; i++) {
+		this.gameObjects[i].update()
+	}
+}
+PlayScene.prototype.render = function(graphics) {
+	for(var i=0; i < this.gameObjects.length; i++) {
+		this.gameObjects[i].render(graphics);
+	}
 }

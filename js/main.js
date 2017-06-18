@@ -9,6 +9,7 @@ Game.prototype = (function() {
 	var idealTimePerFrame = 1000 / 30;
 	var leftover = 0.0;
 	var sceneManager = new SceneManager();
+	var gl;
 	
 	var initiateWebGL = function(canvas) {
 		gl = null;
@@ -24,7 +25,7 @@ Game.prototype = (function() {
 	/*
 		Game loop which renders and updates the game
 	*/
-	var tick = function() {
+	var tick = function(gl) {
 		var timeAtThisFrame = new Date().getTime();
 		var timeSinceLastDoLogic = (timeAtThisFrame - timeAtLastFrame) + leftover;
 		var catchUpFrameCount = Math.floor(timeSinceLastDoLogic / idealTimePerFrame);
@@ -36,7 +37,9 @@ Game.prototype = (function() {
 			active_scene.update();
 		}
 		
-		active_scene.render();
+		active_scene.render(gl);
+		gl.clearColor(0.0, 0.0, 0.0, 1.0);
+		gl.clear(gl.COLOR_BUFFER_BIT);
 		
 		leftover = timeSinceLastDoLogic - (catchUpFrameCount * idealTimePerFrame);
 		timeAtLastFrame = timeAtThisFrame;
@@ -45,12 +48,10 @@ Game.prototype = (function() {
 	return {
 		constructor: Game,
 		init: function( canvas ) {
-			this.gl = initiateWebGL(canvas);
-			gl.clearColor(0.0, 0.0, 0.0, 1.0);
-			gl.clear(gl.COLOR_BUFFER_BIT);
+			gl = initiateWebGL(canvas);
 		},
 		run: function() {
-			setInterval(tick, idealTimePerFrame);
+			setInterval( function() { tick(gl) }, idealTimePerFrame);
 		}
 	}
 })();
