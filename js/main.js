@@ -16,7 +16,6 @@ Game.prototype = (function() {
 		height: 600
 	}
 	var sceneManager;
-	var graphics;
 	
 	var _preload = function() {
 		
