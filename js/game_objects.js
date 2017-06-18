@@ -47,7 +47,7 @@ BlankTile.prototype.render = function(game) {
 	} else {
 		this.normalColor = '#000000';
 	}
-	game.debug.geom(this.rect, '#0fffff');
+	game.debug.geom(this.rect, this.color);
 	game.debug.geom( new Phaser.Rectangle(
 		this.x + 2,
 		this.y + 2,

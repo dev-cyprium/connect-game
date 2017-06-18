@@ -1,5 +1,10 @@
 /*
 	Game instance, class containing the game
+	Disclaimer:
+	This project is using Phaser, however,
+	I disslike how it's doing things so most of the systems
+	are implemented by hand and only Abstractions like Rectangle,
+	rendering and game loop are used from the Phaser framework
 */
 var Game = function() {
 }
